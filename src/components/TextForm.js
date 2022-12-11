@@ -6,7 +6,7 @@ export default function TextForm(props) {
   const handleUpClick = () => {
     let newText = text.toUpperCase();
     setText(newText);
-    props.showAlert('Coverted to upper case','success')
+    props.showAlert("Coverted to upper case", "success");
   };
 
   const handleloClick = () => {
@@ -54,25 +54,24 @@ export default function TextForm(props) {
             onChange={handleOnChange}
             style={{
               backgroundColor: props.mode === "dark" ? "blue" : "white",
-              color:props.mode === "dark" ? "white" : "black",
-              
+              color: props.mode === "dark" ? "white" : "black",
             }}
           ></textarea>
         </div>
 
-        <button className="btn btn-primary mx-2" onClick={handleUpClick}>
+        <button className="btn btn-primary mx-2 my-1" onClick={handleUpClick}>
           Convert to uppercase
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleloClick}>
+        <button className="btn btn-primary mx-2 my-1" onClick={handleloClick}>
           Convert to lowercase
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleCopy}>
+        <button className="btn btn-primary mx-2 my-1" onClick={handleCopy}>
           Copy
         </button>
-        <button className="btn btn-primary mx-2" onClick={handlePaste}>
+        <button className="btn btn-primary mx-2 my-1" onClick={handlePaste}>
           Paste
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleClear}>
+        <button className="btn btn-primary mx-2 my-1" onClick={handleClear}>
           Clear Text
         </button>
       </div>
@@ -89,14 +88,19 @@ export default function TextForm(props) {
           Summary
         </h1>
         <p>
-          {text.length===0?'0':text.split(" ").length-1} and {text.length}
+          {text.split(" ").filter((element) => {
+            return element.length !== 0;
+          }).length}{" "}
+          and {text.length}
         </p>
         <h2
           className={`contianer text-${
             props.mode === "light" ? "dark" : "light"
           }`}
         >
-          {0.008 * text.split(" ").length} minutes to read
+          {0.008 * text.split(" ").filter((element) => {
+            return element.length !== 0;
+          }).length} minutes to read
         </h2>
         <h3
           className={`contianer text-${
@@ -110,7 +114,7 @@ export default function TextForm(props) {
             props.mode === "light" ? "dark" : "light"
           }`}
         >
-          {text.length>0?text:'Enter Some text to preview it here'}
+          {text.length > 0 ? text : "Enter Some text to preview it here"}
         </p>
       </div>
     </>
